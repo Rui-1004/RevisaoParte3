@@ -13,14 +13,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\AzureGalileuRepos\\RevisaoParte3\\RevisaoParte3\\wwwroot\\images\\Avatar.jpg",
-      "PackagePath": "staticwebassets\\images\\Avatar.jpg"
-    },
-    {
-      "Id": "C:\\AzureGalileuRepos\\RevisaoParte3\\RevisaoParte3\\wwwroot\\images\\Titanic.png",
-      "PackagePath": "staticwebassets\\images\\Titanic.png"
-    },
-    {
       "Id": "C:\\AzureGalileuRepos\\RevisaoParte3\\RevisaoParte3\\wwwroot\\images\\babyyoda.png",
       "PackagePath": "staticwebassets\\images\\babyyoda.png"
     },

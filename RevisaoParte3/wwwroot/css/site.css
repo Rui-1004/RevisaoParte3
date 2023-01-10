@@ -17,7 +17,7 @@ body {
     margin-bottom: 60px;
 }
 
-img {
+.carousel-item {
     width: 800px;
     height: 300px;
 }
@@ -32,4 +32,32 @@ img {
     width: 286px ;
     height: 180px ;
     margin: auto;
+}
+
+.container-fluid {
+    background-color: rgb(100, 100, 100);
+}
+
+.nav-item {
+    font-weight: bold;
+}
+
+#barra {
+    background-color: rgb(100, 100, 100);
+}
+
+#start {
+    color: rgb(210, 210, 210);
+}
+
+#home-body {
+    background-color: rgb(100, 100, 100);
+}
+
+#home-h1 {
+    color: rgb(210, 210, 210);
+}
+
+#home-p {
+    color: rgb(0, 255, 255);
 }
