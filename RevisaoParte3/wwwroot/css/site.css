@@ -1,0 +1,35 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+img {
+    width: 800px;
+    height: 300px;
+}
+
+.carousel {
+    width: 800px;
+    height: 300px;
+    margin: auto;
+}
+
+.card {
+    width: 286px ;
+    height: 180px ;
+    margin: auto;
+}
