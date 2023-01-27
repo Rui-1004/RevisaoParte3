@@ -2,9 +2,9 @@
 
 namespace RevisaoParte3.Models
 {
-    public class Author
+    public class Actor
     {
-        public int AuthorId { get; set; }
+        public int ActorId { get; set; }
 
         [StringLength(50, ErrorMessage = "Menos de 50 caracteres")]
         [Required]

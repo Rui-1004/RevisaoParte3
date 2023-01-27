@@ -13,6 +13,6 @@ namespace RevisaoParte3.Data
 
         public DbSet<Movie> Movies { get; set; }
 
-        public DbSet<Author> Authors { get; set; }
+        public DbSet<Actor> Authors { get; set; }
     }
 }

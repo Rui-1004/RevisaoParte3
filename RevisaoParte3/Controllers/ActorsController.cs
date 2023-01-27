@@ -10,22 +10,22 @@ using RevisaoParte3.Models;
 
 namespace RevisaoParte3.Controllers
 {
-    public class AuthorsController : Controller
+    public class ActorsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AuthorsController(ApplicationDbContext context)
+        public ActorsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Authors
+        // GET: Actors
         public async Task<IActionResult> Index()
         {
               return View(await _context.Authors.ToListAsync());
         }
 
-        // GET: Authors/Details/5
+        // GET: Actors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -33,46 +33,39 @@ namespace RevisaoParte3.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors
-                .FirstOrDefaultAsync(m => m.AuthorId == id);
-            if (author == null)
+            var actor = await _context.Authors
+                .FirstOrDefaultAsync(m => m.ActorId == id);
+            if (actor == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(actor);
         }
 
-        // GET: Authors/Create
+        // GET: Actors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
+        // POST: Actors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AuthorId,Name")] Author author)
+        public async Task<IActionResult> Create([Bind("ActorId,Name")] Actor actor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(author);
+                _context.Add(actor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(author);
+            return View(actor);
         }
 
-        // GET: Authors/Edit/5
-        //public IActionResult Edit(int id)
-        //{
-        //    Author author = _context.Authors.Where(p => p.AuthorId == id).FirstOrDefault();
-
-        //    return PartialView("_EditAuthorPartialView", author);
-        //}
-
+        // GET: Actors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -80,22 +73,22 @@ namespace RevisaoParte3.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors.FindAsync(id);
-            if (author == null)
+            var actor = await _context.Authors.FindAsync(id);
+            if (actor == null)
             {
                 return NotFound();
             }
-            return View(author);
+            return View(actor);
         }
 
-        // POST: Authors/Edit/5
+        // POST: Actors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AuthorId,Name")] Author author)
+        public async Task<IActionResult> Edit(int id, [Bind("ActorId,Name")] Actor actor)
         {
-            if (id != author.AuthorId)
+            if (id != actor.ActorId)
             {
                 return NotFound();
             }
@@ -104,12 +97,12 @@ namespace RevisaoParte3.Controllers
             {
                 try
                 {
-                    _context.Update(author);
+                    _context.Update(actor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AuthorExists(author.AuthorId))
+                    if (!ActorExists(actor.ActorId))
                     {
                         return NotFound();
                     }
@@ -120,10 +113,10 @@ namespace RevisaoParte3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(author);
+            return View(actor);
         }
 
-        // GET: Authors/Delete/5
+        // GET: Actors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Authors == null)
@@ -131,17 +124,17 @@ namespace RevisaoParte3.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors
-                .FirstOrDefaultAsync(m => m.AuthorId == id);
-            if (author == null)
+            var actor = await _context.Authors
+                .FirstOrDefaultAsync(m => m.ActorId == id);
+            if (actor == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(actor);
         }
 
-        // POST: Authors/Delete/5
+        // POST: Actors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -150,19 +143,19 @@ namespace RevisaoParte3.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Authors'  is null.");
             }
-            var author = await _context.Authors.FindAsync(id);
-            if (author != null)
+            var actor = await _context.Authors.FindAsync(id);
+            if (actor != null)
             {
-                _context.Authors.Remove(author);
+                _context.Authors.Remove(actor);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AuthorExists(int id)
+        private bool ActorExists(int id)
         {
-          return _context.Authors.Any(e => e.AuthorId == id);
+          return _context.Authors.Any(e => e.ActorId == id);
         }
     }
 }

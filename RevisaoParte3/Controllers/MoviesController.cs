@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using RevisaoParte3.Models;
 
 namespace RevisaoParte3.Controllers
 {
-    [Authorize]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +20,6 @@ namespace RevisaoParte3.Controllers
         }
 
         // GET: Movies
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
               return View(await _context.Movies.ToListAsync());
@@ -46,7 +43,6 @@ namespace RevisaoParte3.Controllers
             return View(movie);
         }
 
-        [Authorize]
         // GET: Movies/Create
         public IActionResult Create()
         {
