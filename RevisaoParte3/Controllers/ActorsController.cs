@@ -1,161 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using RevisaoParte3.Data;
-using RevisaoParte3.Models;
 
 namespace RevisaoParte3.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public ActorsController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        // GET: Actors
-        public async Task<IActionResult> Index()
-        {
-              return View(await _context.Authors.ToListAsync());
-        }
-
-        // GET: Actors/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Authors == null)
-            {
-                return NotFound();
-            }
-
-            var actor = await _context.Authors
-                .FirstOrDefaultAsync(m => m.ActorId == id);
-            if (actor == null)
-            {
-                return NotFound();
-            }
-
-            return View(actor);
-        }
-
-        // GET: Actors/Create
-        public IActionResult Create()
+        // GET: ActorsController
+        public ActionResult Index()
         {
             return View();
         }
 
-        // POST: Actors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // GET: ActorsController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: ActorsController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: ActorsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ActorId,Name")] Actor actor)
+        public ActionResult Create(IFormCollection collection)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(actor);
-                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(actor);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Actors/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: ActorsController/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (id == null || _context.Authors == null)
-            {
-                return NotFound();
-            }
-
-            var actor = await _context.Authors.FindAsync(id);
-            if (actor == null)
-            {
-                return NotFound();
-            }
-            return View(actor);
+            return View();
         }
 
-        // POST: Actors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: ActorsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ActorId,Name")] Actor actor)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
-            if (id != actor.ActorId)
+            try
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(actor);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ActorExists(actor.ActorId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(actor);
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: Actors/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: ActorsController/Delete/5
+        public ActionResult Delete(int id)
         {
-            if (id == null || _context.Authors == null)
-            {
-                return NotFound();
-            }
-
-            var actor = await _context.Authors
-                .FirstOrDefaultAsync(m => m.ActorId == id);
-            if (actor == null)
-            {
-                return NotFound();
-            }
-
-            return View(actor);
+            return View();
         }
 
-        // POST: Actors/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: ActorsController/Delete/5
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
-            if (_context.Authors == null)
+            try
             {
-                return Problem("Entity set 'ApplicationDbContext.Authors'  is null.");
+                return RedirectToAction(nameof(Index));
             }
-            var actor = await _context.Authors.FindAsync(id);
-            if (actor != null)
+            catch
             {
-                _context.Authors.Remove(actor);
+                return View();
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ActorExists(int id)
-        {
-          return _context.Authors.Any(e => e.ActorId == id);
         }
     }
 }
